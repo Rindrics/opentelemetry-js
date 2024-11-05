@@ -52,6 +52,7 @@ class RetryingTransport implements IExporterTransport {
     let nextBackoff = INITIAL_BACKOFF;
 
     while (result.status === 'retryable' && attempts > 0) {
+      console.log("-----send()-----");
       attempts--;
 
       // use maximum of computed backoff and 0 to avoid negative timeouts
@@ -83,6 +84,7 @@ class RetryingTransport implements IExporterTransport {
  * Creates an Exporter Transport that retries on 'retryable' response.
  */
 export function createRetryingTransport(options: {
+  console.log("-----createRetryingTransport-----");
   // Underlying transport to wrap.
   transport: IExporterTransport;
 }): IExporterTransport {
